@@ -1,25 +1,19 @@
 from pyrogram import Client, filters
-import base64, os, re, json
-
-# decode session from base64 env variable
-session_data = base64.b64decode(os.environ["SESSION_BASE64"])
-with open("my_account.session", "wb") as f:
-    f.write(session_data)
+import os, re, json
 
 api_id = int(os.environ["API_ID"])
 api_hash = os.environ["API_HASH"]
 
-# ← همونا که خودت گفتی
 source_channels = ["@HopeNet", "@vmessorg"]
 destination_channel = "@SFcMAh"
 
 app = Client("my_account", api_id=api_id, api_hash=api_hash)
 
-# تابع برای ویرایش اسم کانفیگ و جایگزینی با @eliiteshop
 def modify_config(text: str) -> str:
     if "vmess://" in text:
         try:
             base64_part = text.split("vmess://")[1].strip()
+            import base64
             decoded = base64.b64decode(base64_part + "===").decode()
             j = json.loads(decoded)
             j['ps'] = "@eliiteshop"
@@ -41,7 +35,7 @@ async def process_config(client, message):
         edited_text = modify_config(message.text)
         try:
             await client.send_message(destination_channel, edited_text)
-            print("✅ کانفیگ ارسال شد.")
+            print("✅ پیام ارسال شد.")
         except Exception as e:
             print("❌ خطا در ارسال:", e)
 
