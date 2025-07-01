@@ -7,7 +7,7 @@ api_hash = os.environ["API_HASH"]
 source_channels = ["@HopeNet", "@vmessorg"]
 destination_channel = "@SFcMAh"
 
-app = Client("my_account", api_id=api_id, api_hash=api_hash)
+app = Client("static/my_account", api_id=api_id, api_hash=api_hash)
 
 def modify_config(text: str) -> str:
     if "vmess://" in text:
