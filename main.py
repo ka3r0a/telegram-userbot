@@ -4,7 +4,7 @@ import os, re, json
 api_id = int(os.environ["API_ID"])
 api_hash = os.environ["API_HASH"]
 
-source_channels = ["@HopeNet", "@vmessorg"]
+source_channels = ["@Hope_Net", "@vmessorg"]
 destination_channel = "@SFcMAh"
 
 app = Client("static/my_account", api_id=api_id, api_hash=api_hash)
